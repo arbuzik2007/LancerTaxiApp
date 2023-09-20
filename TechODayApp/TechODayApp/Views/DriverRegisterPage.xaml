@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TechODayApp.ViewModels"
+             x:Class="TechODayApp.Views.DriverRegisterPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="entryTextColor">LightGray</Color>
+            <LayoutOptions x:Key="horzOptions"
+                       Alignment="Start" />
+
+            <LayoutOptions x:Key="vertOptions"
+                       Alignment="Center"
+                       Expands="True" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:DriverProfileViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout  Margin="20"
+                 Spacing="5">
+            <Label Text="{x:Static local:PlaceholderViewModel.DriverName}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Entry Placeholder="{x:Static local:PlaceholderViewModel.DriverName}" Text="{Binding DriverName}" PlaceholderColor="{StaticResource entryTextColor}"/>
+            <Label Text="{x:Static local:PlaceholderViewModel.CarBrand}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Entry Placeholder="{x:Static local:PlaceholderViewModel.CarBrand}" Text="{Binding CarBrand}" PlaceholderColor="{StaticResource entryTextColor}"/>
+            <Label Text="{x:Static local:PlaceholderViewModel.CarModel}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Entry Placeholder="{x:Static local:PlaceholderViewModel.CarModel}" Text="{Binding CarModel}" PlaceholderColor="{StaticResource entryTextColor}"/>
+            <Label Text="{x:Static local:PlaceholderViewModel.PlateNumber}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Entry Placeholder="{x:Static local:PlaceholderViewModel.PlateNumber}" Text="{Binding PlateNumber}" PlaceholderColor="{StaticResource entryTextColor}"/>
+            <Button Clicked="Button_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

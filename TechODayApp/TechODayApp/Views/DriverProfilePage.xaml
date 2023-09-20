@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:TechODayApp.ViewModels"
+             x:Class="TechODayApp.Views.DriverProfilePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <LayoutOptions x:Key="horzOptions"
+                       Alignment="Start" />
+
+            <LayoutOptions x:Key="vertOptions"
+                       Alignment="Center"
+                       Expands="True" />
+            <x:Double x:Key="primaryFontSize">24</x:Double>
+            <x:Double x:Key="fontSize">18</x:Double>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout  Margin="20"
+                 Spacing="5">
+            <Label Text="{Binding DriverName}" FontSize="{StaticResource primaryFontSize}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Label Text="{Binding CarBrand}" FontSize="{StaticResource fontSize}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Label Text="{Binding CarModel}" FontSize="{StaticResource fontSize}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Label Text="{Binding PlateNumber}" FontSize="{StaticResource fontSize}"
+                HorizontalOptions="{StaticResource horzOptions}"
+                   VerticalOptions="{StaticResource vertOptions}"/>
+            <Button></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
