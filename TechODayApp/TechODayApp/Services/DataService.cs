@@ -51,6 +51,11 @@ namespace TechODayApp.Services
             return await Task.FromResult(drivers.LastOrDefault());
         }
 
+        public Driver GetLastItemSimple()
+        {
+            return drivers.Last();
+        }
+
         public async Task<Driver> GetItemAsync(string id)
         {
             return await Task.FromResult(drivers.FirstOrDefault(s => s.PlateNumber == id));
@@ -72,6 +77,7 @@ namespace TechODayApp.Services
                 return instance;
             }
         }
+        public DriveRequest DriveRequest { get; set; }
         public PassengerProfileViewModel PassengerProfileViewModel { get; set;}
     }
 }
