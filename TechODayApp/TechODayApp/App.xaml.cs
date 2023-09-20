@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using TechODayApp.Services;
+using Xamarin.Forms;
 
 namespace TechODayApp
 {
@@ -9,6 +10,7 @@ namespace TechODayApp
         {
             InitializeComponent();
 
+            DependencyService.Register<DataService>();
             MainPage = new AppShell();
         }
 

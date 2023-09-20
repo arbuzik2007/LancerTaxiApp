@@ -1,21 +1,34 @@
 ﻿using System.ComponentModel;
 
-namespace TechODayApp.ViewModels
+namespace TechODayApp.Services
 {
     public class UserProfileState : INotifyPropertyChanged
     {
-        public UserProfileState() { isUserDriver = false; }
-        private bool isUserDriver;
+        private static UserProfileState instance;
+
+        public static UserProfileState Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new UserProfileState();
+                }
+                return instance;
+            }
+        }
+        private UserProfileState() { isUserDriver = false; }
+
+        private static bool isUserDriver;
 
         public bool IsDriverProfileVisible
         {
-            get { return isUserDriver; }
+            get => isUserDriver;
             set
             {
                 if (isUserDriver != value)
                 {
                     isUserDriver = value;
-                    OnPropertyChanged(nameof(IsDriverProfileVisible));
                 }
             }
         }

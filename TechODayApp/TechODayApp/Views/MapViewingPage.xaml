@@ -2,8 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TechODayApp.Views.MapViewingPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="entryTextColor">LightGray</Color>
+            <LayoutOptions x:Key="horzOptions"
+                       Alignment="Center" />
+
+            <LayoutOptions x:Key="vertOptions"
+                       Alignment="Start"
+                       Expands="True" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-        </StackLayout>
+        <Grid x:Name="Main" Margin="20,35,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.2*" />
+                <RowDefinition Height="0.40*" />
+                <RowDefinition Height="0.30*" />
+                <RowDefinition Height="0.1*" />
+            </Grid.RowDefinitions>
+            <BoxView Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Column="0" BackgroundColor="AliceBlue"></BoxView>
+            <StackLayout x:Name="topLayout" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="0.2">
+                <Entry Placeholder="Where's the start of your trip?" HorizontalOptions="{StaticResource horzOptions}"></Entry>
+                <Entry Placeholder="Where do you want to drop?" HorizontalOptions="{StaticResource horzOptions}"></Entry>
+            </StackLayout>
+            <StackLayout x:Name="bottomLayout" Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="0.2">
+                <Button x:Name="rideButton" Text="RIDE NOW"></Button>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

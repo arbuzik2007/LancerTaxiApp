@@ -1,5 +1,6 @@
 ﻿using System;
 using TechODayApp.Services;
+using TechODayApp.ViewModels;
 using TechODayApp.Views;
 using Xamarin.Forms;
 
@@ -18,15 +19,18 @@ namespace TechODayApp
             passengerProfileItem.IsVisible = true;
             passengerProfile.Reset();
 
-            var driverProfile = DataService.Instance.DriverProfileViewModel;
             driverProfileItem.IsVisible = false;
-            driverProfile.Reset();
+
+
+            UserProfileState.Instance.IsDriverProfileVisible = false;
+
 
             await Shell.Current.GoToAsync("//LoginPage");
 
             MessagingCenter.Subscribe<App, string>(App.Current, "DriverEnter", (snd, arg) =>
             {
-                driverProfileItem.IsVisible = DataService.Instance.DriverProfileViewModel.IsDriverProfileVisible;
+                var state = UserProfileState.Instance.IsDriverProfileVisible = true;
+                driverProfileItem.IsVisible = state;
                 passengerProfileItem.IsVisible = !driverProfileItem.IsVisible;
                 Device.BeginInvokeOnMainThread(() =>
                 {

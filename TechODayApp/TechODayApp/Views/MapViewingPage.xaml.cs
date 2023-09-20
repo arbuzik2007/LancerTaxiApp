@@ -15,6 +15,12 @@ namespace TechODayApp.Views
         public MapViewingPage()
         {
             InitializeComponent();
+            Load();
+        }
+        private void Load()
+        {
+
+
         }
     }
 }

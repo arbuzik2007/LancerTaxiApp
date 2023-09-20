@@ -14,9 +14,6 @@
                        Expands="True" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <local:DriverProfileViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout  Margin="20"
                  Spacing="5">
@@ -36,7 +33,7 @@
                 HorizontalOptions="{StaticResource horzOptions}"
                    VerticalOptions="{StaticResource vertOptions}"/>
             <Entry Placeholder="{x:Static local:PlaceholderViewModel.PlateNumber}" Completed="Entry_Completed"  Text="{Binding PlateNumber}" PlaceholderColor="{StaticResource entryTextColor}"/>
-            <Button x:Name="sendButton" Clicked="Button_Clicked" BackgroundColor="Salmon"></Button>
+            <Button x:Name="sendButton" Command="{Binding SaveCommand}" BackgroundColor="Salmon"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -16,13 +16,15 @@ namespace TechODayApp.Views
         public DriverProfilePage()
         {
             InitializeComponent();
-            BindingContext = DataService.Instance.DriverProfileViewModel;
+            var _viewModel = new NewDriverViewManager();
+            _viewModel.LoadItem();
+            BindingContext = _viewModel;
         }
 
-        public DriverProfilePage(DriverProfileViewModel viewModel)
-        {
-            InitializeComponent();
-            BindingContext = viewModel;
-        }
+        //public DriverProfilePage(DriverProfileViewModel viewModel)
+        //{
+        //    InitializeComponent();
+        //    BindingContext = viewModel;
+        //}
     }
 }
