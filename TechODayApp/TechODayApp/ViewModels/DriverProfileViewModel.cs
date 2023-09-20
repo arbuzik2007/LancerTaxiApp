@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace TechODayApp.ViewModels
 {
@@ -66,6 +64,40 @@ namespace TechODayApp.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public bool AreFilled()
+        {
+            if(!String.IsNullOrEmpty(CarBrand) &&
+                !String.IsNullOrEmpty(CarModel) &&
+                !String.IsNullOrEmpty(DriverName) &&
+                !String.IsNullOrEmpty(PlateNumber))
+                return true;
+            return false;
+        }
+
+        public void Reset()
+        {
+            DriverName = String.Empty;
+            CarBrand = String.Empty;
+            CarModel = String.Empty;
+            PlateNumber = String.Empty;
+            IsDriverProfileVisible = false;
+        }
+
+        private bool isDriverProfileVisible;
+
+        public bool IsDriverProfileVisible
+        {
+            get { return isDriverProfileVisible; }
+            set
+            {
+                if (isDriverProfileVisible != value)
+                {
+                    isDriverProfileVisible = value;
+                    OnPropertyChanged(nameof(IsDriverProfileVisible));
+                }
+            }
         }
     }
 }

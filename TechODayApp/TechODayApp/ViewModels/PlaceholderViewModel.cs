@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TechODayApp.ViewModels
+﻿namespace TechODayApp.ViewModels
 {
     public class PlaceholderViewModel
     {

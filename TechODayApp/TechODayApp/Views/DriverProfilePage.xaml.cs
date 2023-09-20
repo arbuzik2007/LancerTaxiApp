@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechODayApp.Services;
 using TechODayApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,6 +16,7 @@ namespace TechODayApp.Views
         public DriverProfilePage()
         {
             InitializeComponent();
+            BindingContext = DataService.Instance.DriverProfileViewModel;
         }
 
         public DriverProfilePage(DriverProfileViewModel viewModel)

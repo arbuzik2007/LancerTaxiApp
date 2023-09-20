@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\MapViewingPage.xaml.cs">
       <DependentUpon>MapViewingPage.xaml</DependentUpon>
     </Compile>
@@ -30,6 +25,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MapViewingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PassengerProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

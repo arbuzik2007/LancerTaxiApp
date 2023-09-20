@@ -16,12 +16,12 @@ namespace TechODayApp.ViewModels
 
         private void OnDriverLoginClicked(object obj)
         {
-            MessagingCenter.Send<App, string>(App.Current as App, "HideDriverRegister", "");
+            //made inside the LoginPage.xaml using Navigator
         }
 
         private async void OnPassengerLoginClicked(object obj)
         {
-            await Shell.Current.GoToAsync($"//{nameof(MapViewingPage)}");
+            await Shell.Current.GoToAsync($"//{nameof(PassengerProfilePage)}");
         }
     }
 }

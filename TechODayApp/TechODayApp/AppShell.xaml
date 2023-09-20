@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:TechODayApp.Views"
+       xmlns:local1="clr-namespace:TechODayApp.Services"
        Title="TechODayApp"
        x:Class="TechODayApp.AppShell">
 
@@ -81,9 +82,13 @@
     <FlyoutItem Title="Map" Icon="icon_about.png">
         <ShellContent Route="MapViewingPage" ContentTemplate="{DataTemplate local:MapViewingPage}" />
     </FlyoutItem>
-    <FlyoutItem IsVisible="False" x:Name="driverRegisterItem" Title="Driver Register" Icon="icon_driver.png">
-        <ShellContent Route="DriverRegisterPage" ContentTemplate="{DataTemplate local:DriverRegisterPage}" />
+    <FlyoutItem IsVisible="False" x:Name="driverProfileItem" Title="Driver Profile" Icon="icon_driver.png">
+        <ShellContent Route="DriverProfilePage" ContentTemplate="{DataTemplate local:DriverProfilePage}" />
     </FlyoutItem>
+    <FlyoutItem IsVisible="True" x:Name="passengerProfileItem" Title="User Profile" Icon="icon_passenger.png">
+        <ShellContent Route="PassengerProfilePage" ContentTemplate="{DataTemplate local:PassengerProfilePage}" />
+    </FlyoutItem>
+
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
     <TabBar>

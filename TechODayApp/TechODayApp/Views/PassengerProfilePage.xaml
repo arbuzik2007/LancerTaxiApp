@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TechODayApp.Views.PassengerProfilePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding UserName}" HorizontalOptions="CenterAndExpand"/>
+
+            <ListView ItemsSource="{Binding Tags}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Label Text="{Binding Name}" TextColor="{Binding Color}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="tagEntry" Placeholder="Add a Tag" />
+                <Button Text="Add Tag" Clicked="Button_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

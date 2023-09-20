@@ -29,7 +29,6 @@
             <Label Text="{Binding PlateNumber}" FontSize="{StaticResource fontSize}"
                 HorizontalOptions="{StaticResource horzOptions}"
                    VerticalOptions="{StaticResource vertOptions}"/>
-            <Button></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

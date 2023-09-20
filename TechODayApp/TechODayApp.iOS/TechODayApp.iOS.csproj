@@ -145,4 +145,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\icon_driver.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\icon_passenger.png" />
+  </ItemGroup>
 </Project>

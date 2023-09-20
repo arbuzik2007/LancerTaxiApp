@@ -8,8 +8,8 @@
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button x:Name="passengerClick" VerticalOptions="Center" Text="Login As Driver" Command="{Binding DriverLoginCommand}"/>
-            <Button x:Name="driverClick" VerticalOptions="Center" Text="Login As User" Command="{Binding PassengerLoginCommand}"/>
+            <Button x:Name="driverClick" VerticalOptions="Center" Text="Login As Driver" Clicked="driverClick_Clicked"/>
+            <Button x:Name="passengerClick" VerticalOptions="Center" Text="Login As User" Command="{Binding PassengerLoginCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

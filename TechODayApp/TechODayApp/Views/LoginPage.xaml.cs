@@ -12,5 +12,10 @@ namespace TechODayApp.Views
             InitializeComponent();
             this.BindingContext = new LoginViewModel();
         }
+
+        private async void driverClick_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new DriverRegisterPage());
+        }
     }
 }
