@@ -15,12 +15,12 @@ namespace TechODayApp
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            var passengerProfile = DataService.Instance.PassengerProfileViewModel;
+            var passengerProfile = ClientDataService.Instance.passengerProfile;
             passengerProfileItem.IsVisible = true;
             passengerProfile.Reset();
 
             driverProfileItem.IsVisible = false;
-
+            driverMainItem.IsVisible = false;
 
             UserProfileState.Instance.IsDriverProfileVisible = false;
 
@@ -31,11 +31,23 @@ namespace TechODayApp
             {
                 var state = UserProfileState.Instance.IsDriverProfileVisible = true;
                 driverProfileItem.IsVisible = state;
-                passengerProfileItem.IsVisible = !driverProfileItem.IsVisible;
+                driverMainItem.IsVisible = state;
+                passengerProfileItem.IsVisible = !state;
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Shell.Current.GoToAsync($"//{nameof(MapViewingPage)}");
+                    Shell.Current.GoToAsync($"//{nameof(DriverMain)}");
                 });
+            });
+            MessagingCenter.Subscribe<App, string>(App.Current, "ClientEnter", (snd, arg) =>
+            {
+                var state = UserProfileState.Instance.IsDriverProfileVisible = false;
+                driverProfileItem.IsVisible = state;
+                driverMainItem.IsVisible = state;
+                passengerProfileItem.IsVisible = !state;
+                //Device.BeginInvokeOnMainThread(() =>
+                //{
+                //    Shell.Current.GoToAsync($"//{nameof(MapViewingPage)}");
+                //});
             });
         }
 

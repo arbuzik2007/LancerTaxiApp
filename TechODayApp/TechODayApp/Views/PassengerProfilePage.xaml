@@ -4,7 +4,7 @@
              x:Class="TechODayApp.Views.PassengerProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding UserName}" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="{Binding ClientName}" HorizontalOptions="CenterAndExpand"/>
 
             <ListView ItemsSource="{Binding Tags}">
                 <ListView.ItemTemplate>

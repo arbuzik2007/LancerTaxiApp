@@ -1,5 +1,7 @@
-﻿using TechODayApp.Services;
+﻿using Android.Graphics;
+using TechODayApp.Services;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace TechODayApp
 {
@@ -10,8 +12,16 @@ namespace TechODayApp
         {
             InitializeComponent();
 
-            DependencyService.Register<DataService>();
+            RegisterFontAwesome();
+            DependencyService.Register<DriverDataService>();
+            DependencyService.Register<ClientDataService>();
             MainPage = new AppShell();
+        }
+
+        private void RegisterFontAwesome()
+        {
+            var fontAwesomeFont = Typeface.CreateFromAsset(Android.App.Application.Context.Assets, "FontAwesome.otf");
+            Resources.Add("FontAwesome", fontAwesomeFont);
         }
 
         protected override void OnStart()

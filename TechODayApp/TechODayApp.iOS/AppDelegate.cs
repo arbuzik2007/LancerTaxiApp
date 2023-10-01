@@ -4,7 +4,9 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
+[assembly: ExportFont("FontAwesome.otf", Alias = "FontAwesome")]
 namespace TechODayApp.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 

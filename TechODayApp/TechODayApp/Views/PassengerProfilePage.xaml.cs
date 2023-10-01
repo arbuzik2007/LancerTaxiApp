@@ -17,13 +17,20 @@ namespace TechODayApp.Views
         public PassengerProfilePage()
         {
             InitializeComponent();
-            _viewModel = DataService.Instance.PassengerProfileViewModel;
+
+            _viewModel = ClientDataService.Instance.passengerProfile;
             BindingContext = _viewModel;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            _viewModel.SaveCommand.Execute(null);
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            DataService.Instance.PassengerProfileViewModel = _viewModel;
+            ClientDataService.Instance.passengerProfile = _viewModel;
             if (!String.IsNullOrEmpty(tagEntry.Text))
                 _viewModel.AddTag(tagEntry.Text);
         }

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TechODayApp.ViewModels"
+             x:Class="TechODayApp.Views.ClientMain">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!-- Header -->
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="road.png" HeightRequest="24" WidthRequest="24" Margin="5"/>
+                    <Label Text="LANCER" FontSize="24" VerticalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <!-- User Information -->
+                <StackLayout x:Name="userInfo" Padding="20">
+                    <Label Text="User Information" FontSize="18"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Current Position: "/>
+                                <Span x:Name="currentPosition"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Destination: "/>
+                                <Span x:Name="destination"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+                <!-- Recommended Drivers -->
+                <RefreshView x:Name="usersDisplay" IsVisible="true" x:DataType="local:DriversViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" >
+                    <StackLayout x:Name="drivers" Padding="20">
+                        <Label Text="Recommended Drivers" FontSize="18"/>
+                        <ListView ItemsSource="{Binding DriverInfos}" x:Name="driverList" RowHeight="100">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout x:DataType="local:DriverInfo">
+                                            <Frame HasShadow="True" Margin="5" CornerRadius="8" BackgroundColor="#79AC78">
+                                                <StackLayout Orientation="Horizontal" Padding="10">
+                                                    <Label Text="{Binding Name}" VerticalOptions="CenterAndExpand"/>
+                                                    <Label Text="{Binding StarRating}" VerticalOptions="CenterAndExpand"/>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </RefreshView>
+
+                <!-- Take a Ride Button -->
+                <StackLayout x:Name="rideButtonContainer" HorizontalOptions="CenterAndExpand" Margin="20">
+                    <Button x:Name="takeRideButton" Text="Take a ride" Clicked="TakeRideButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

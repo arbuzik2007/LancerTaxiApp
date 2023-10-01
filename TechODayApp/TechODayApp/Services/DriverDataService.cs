@@ -6,21 +6,20 @@ using TechODayApp.ViewModels;
 
 namespace TechODayApp.Services
 {
-    public class DataService : IDataStore<Driver>
+    public class DriverDataService : IDataStore<Driver>
     {
-        private static DataService instance;
+        private static DriverDataService instance;
 
         readonly List<Driver> drivers;
 
         // Private constructor to prevent external instantiation
-        public DataService()
+        public DriverDataService()
         {
             drivers = new List<Driver>()
             {
-                new Driver() { CarBrand="BYD", CarModel="HAN I", DriverName="Driver1", PlateNumber="c706"}
+                new Driver() { CarBrand="BYD", CarModel="HAN I", DriverName="Driver1", PlateNumber="c706"},
+                new Driver() { CarBrand="HONDA", CarModel="STS 123", DriverName="Driver2", PlateNumber="c345"}
             };
-            PassengerProfileViewModel = new PassengerProfileViewModel();
-            //UserProfileState = new UserProfileState();
         }
         public async Task<bool> AddItemAsync(Driver item)
         {
@@ -66,18 +65,17 @@ namespace TechODayApp.Services
             return await Task.FromResult(drivers);
         }
 
-        public static DataService Instance
+        public static DriverDataService Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new DataService();
+                    instance = new DriverDataService();
                 }
                 return instance;
             }
         }
         public DriveRequest DriveRequest { get; set; }
-        public PassengerProfileViewModel PassengerProfileViewModel { get; set;}
     }
 }

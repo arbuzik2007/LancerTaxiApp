@@ -148,4 +148,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\icon_passenger.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\face_laugh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\road.png" />
+  </ItemGroup>
 </Project>

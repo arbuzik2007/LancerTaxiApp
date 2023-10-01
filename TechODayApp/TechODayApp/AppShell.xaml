@@ -3,8 +3,10 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:TechODayApp.Views"
        xmlns:local1="clr-namespace:TechODayApp.Services"
+       xmlns:controls="clr-namespace:TechODayApp.Controls"
        Title="TechODayApp"
-       x:Class="TechODayApp.AppShell">
+       x:Class="TechODayApp.AppShell"
+       FlyoutHeaderBehavior="CollapseOnScroll">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
@@ -73,6 +75,12 @@
             </Style>
         </ResourceDictionary>
     </Shell.Resources>
+    <Shell.FlyoutHeader>
+        <controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
+    <Shell.FlyoutFooter>
+        <controls:FlyoutFooter/>
+    </Shell.FlyoutFooter>
 
     <!-- 
         When the Flyout is visible this defines the content to display in the flyout.
@@ -84,6 +92,9 @@
     </FlyoutItem>
     <FlyoutItem IsVisible="False" x:Name="driverProfileItem" Title="Driver Profile" Icon="icon_driver.png">
         <ShellContent Route="DriverProfilePage" ContentTemplate="{DataTemplate local:DriverProfilePage}" />
+    </FlyoutItem>
+    <FlyoutItem IsVisible="False" x:Name="driverMainItem" Title="Main" Icon="icon_driver.png">
+        <ShellContent Route="DriverMain" ContentTemplate="{DataTemplate local:DriverMain}" />
     </FlyoutItem>
     <FlyoutItem IsVisible="True" x:Name="passengerProfileItem" Title="User Profile" Icon="icon_passenger.png">
         <ShellContent Route="PassengerProfilePage" ContentTemplate="{DataTemplate local:PassengerProfilePage}" />

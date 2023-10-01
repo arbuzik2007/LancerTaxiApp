@@ -10,7 +10,8 @@ namespace TechODayApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Driver> DataStore => DependencyService.Get<IDataStore<Driver>>();
+        public IDataStore<Driver> DriverStore => DependencyService.Get<IDataStore<Driver>>();
+        public IDataStore<Client> ClientStore => DependencyService.Get<IDataStore<Client>>();
 
         bool isBusy = false;
         public bool IsBusy

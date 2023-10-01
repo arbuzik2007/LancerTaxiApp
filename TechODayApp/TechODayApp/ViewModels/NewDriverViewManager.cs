@@ -14,6 +14,7 @@ namespace TechODayApp.ViewModels
         private string carModel;
         private string carBrand;
         private string plateNumber;
+        private int rating = Driver.RatingDefault; //default rating for drivers
 
         public NewDriverViewManager()
         {
@@ -44,15 +45,16 @@ namespace TechODayApp.ViewModels
             get => carModel;
             set => SetProperty(ref carModel, value);
         }
+        public int Rating { get => rating; set { if (value <= 5 && value > 0) SetProperty(ref rating, value); } }
 
         public bool AreFilled()
         {
-            if(!String.IsNullOrEmpty(CarBrand) &&
-                !String.IsNullOrEmpty(CarModel) &&
-                !String.IsNullOrEmpty(DriverName) &&
-                !String.IsNullOrEmpty(PlateNumber))
-                return true;
-            return false;
+            if (String.IsNullOrEmpty(CarBrand) ||
+                String.IsNullOrEmpty(CarModel) ||
+                String.IsNullOrEmpty(DriverName) ||
+                String.IsNullOrEmpty(PlateNumber))
+                return false;
+            return true;
         }
 
         public void Reset()
@@ -61,6 +63,7 @@ namespace TechODayApp.ViewModels
             CarBrand = String.Empty;
             CarModel = String.Empty;
             PlateNumber = String.Empty;
+            Rating = Driver.RatingDefault;
         }
 
         public Command SaveCommand { get; }
@@ -72,10 +75,11 @@ namespace TechODayApp.ViewModels
                 DriverName = driverName,
                 CarBrand = carBrand,
                 CarModel = carModel,
-                PlateNumber = plateNumber
+                PlateNumber = plateNumber,
+                Rating = rating
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await DriverStore.AddItemAsync(newItem);
 
             MessagingCenter.Send<App, string>(App.Current as App, "DriverEnter", "");
 
@@ -86,11 +90,12 @@ namespace TechODayApp.ViewModels
         {
             try
             {
-                var item = await DataStore.GetLastItem();
+                var item = await DriverStore.GetLastItem();
                 DriverName = item.DriverName;
                 CarBrand = item.CarBrand;
                 CarModel = item.CarModel;
                 PlateNumber = item.PlateNumber;
+                Rating = item.Rating;
             }
             catch (Exception)
             {

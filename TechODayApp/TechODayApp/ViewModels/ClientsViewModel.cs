@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
 using TechODayApp.Models;
 using TechODayApp.Services;
@@ -8,42 +10,20 @@ using Xamarin.Forms;
 
 namespace TechODayApp.ViewModels
 {
-    public class DriverInfo
+    public class ClientsViewModel : BaseViewModel
     {
-        public string Name { get; set; }
-        public string StarRating { get; set; }
-    }
+        private Client _selectedItem;
 
-    public class DriversViewModel : BaseViewModel
-    {
-        private Driver _selectedItem;
-
-        public ObservableCollection<Driver> Items { get; }
+        public ObservableCollection<Client> Items { get; }
         public Command LoadItemsCommand { get; }
-        public Command<Driver> ItemTapped { get; }
-        public ObservableCollection<DriverInfo> DriverInfos { get; private set; }
+        public Command<Client> ItemTapped { get; }
 
-        public void UpdateDriverInfos()
+        public ClientsViewModel()
         {
-            DriverInfos = new ObservableCollection<DriverInfo>();
-            foreach (var item in Items)
-            {
-                int maxRating = 5; // Assuming a maximum rating of 5 stars
-                int fullStars = item.Rating;
-                int emptyStars = maxRating - item.Rating;
-
-                string ratingString = new string('★', fullStars) + new string('☆', emptyStars);
-
-                DriverInfos.Add(new DriverInfo() { Name = item.DriverName, StarRating = ratingString });
-            }
-        }
-
-        public DriversViewModel()
-        {
-            Items = new ObservableCollection<Driver>();
+            Items = new ObservableCollection<Client>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Driver>(OnItemSelected);
+            ItemTapped = new Command<Client>(OnItemSelected);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -53,7 +33,7 @@ namespace TechODayApp.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DriverStore.GetItemsAsync(true);
+                var items = await ClientStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -75,7 +55,7 @@ namespace TechODayApp.ViewModels
             SelectedItem = null;
         }
 
-        public Driver SelectedItem
+        public Client SelectedItem
         {
             get => _selectedItem;
             set
@@ -106,12 +86,11 @@ namespace TechODayApp.ViewModels
             }
         }
 
-        void OnItemSelected(Driver item)
+        void OnItemSelected(Client item)
         {
             if (item == null)
                 return;
 
-            DriverDataService.Instance.DriveRequest = new DriveRequest() { SelectedDriver = item };
 
             // This will push the ItemDetailPage onto the navigation stack
             //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
