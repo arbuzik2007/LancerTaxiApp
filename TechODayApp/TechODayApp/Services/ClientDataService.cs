@@ -19,7 +19,7 @@ namespace TechODayApp.Services
             clients = new List<Client>()
             {
                 new Client() { ClientDestination = "dest", ClientLocation = "loc", ClientName = "name", Id = Guid.NewGuid().ToString(), Rating = 4,
-                    Tags = new ObservableCollection<Tag>() { new Tag("Roar") } },
+                    Tags = new ObservableCollection<Tag>() { new Tag("Minor") } },
                  new Client() { ClientDestination = "dest", ClientLocation = "loc", ClientName = "name2", Id = Guid.NewGuid().ToString(), Rating = 2,
                     Tags = new ObservableCollection<Tag>() { new Tag("Deaf") } },
 

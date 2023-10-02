@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Timers;
+using TechODayApp.Models;
+using TechODayApp.Services;
 using TechODayApp.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace TechODayApp.Views
@@ -11,12 +12,26 @@ namespace TechODayApp.Views
     public partial class DriverMain : ContentPage
     {
         ClientsViewModel _viewModel;
+        Driver currentDriver;
         public DriverMain()
         {
             InitializeComponent();
 
             _viewModel = new ClientsViewModel();
             this.BindingContext = _viewModel;
+
+            Load();
+        }
+
+        private void Load()
+        {
+            currentDriver = DriverDataService.Instance.GetLastItemSimple();
+            if(currentDriver == null)
+                throw new Exception("Error: Driver not found");
+
+            dutyToggle.IsChecked = true;
+            updateDriverStatus(null, null);
+            dutyToggle.CheckedChanged += updateDriverStatus;
         }
 
         protected override void OnAppearing()
@@ -24,14 +39,7 @@ namespace TechODayApp.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
 
-            //Update Requests Info
-
-            dutyToggle.IsChecked = true;
-            updateDriverStatus(null, null);
-            dutyToggle.CheckedChanged += updateDriverStatus;
-
-
-            
+            Load();
 
         }
 
@@ -67,38 +75,16 @@ namespace TechODayApp.Views
 
         private void updateRequestList()
         {
-            _viewModel.UpdateClientInfos();
-
-
-
+            _viewModel.UpdateClientInfos(currentDriver);
             requestList.ItemsSource = _viewModel.ClientInfos;
-            //foreach (var item in _viewModel.Items)
-            //{
-            //    var stackLayout = new StackLayout() { BackgroundColor = Color.FromHex("#D0E7D2") };
-            //    var label = new Label() { Text = $"{item.ClientName} - Pickup at {item.ClientLocation} - To {item.ClientDestination}" };
-            //    stackLayout.Children.Add(label);
-
-            //    var tagLayout = new StackLayout() { Orientation = StackOrientation.Horizontal };
-            //    foreach (var tag in item.Tags)
-            //    {
-            //        tagLayout.Children.Add(new Label() { Text = tag.Name, TextColor = tag.Color });
-            //    }
-            //    stackLayout.Children.Add(tagLayout);
-
-            //    var gestureRecognizer = new TapGestureRecognizer { NumberOfTapsRequired = 1, Command = _viewModel.ItemTapped };
-            //    stackLayout.GestureRecognizers.Add(gestureRecognizer);
-
-            //    requestList.Children.Add(stackLayout);
-            //}
-
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
             if(requestList.SelectedItem != null)
             {
-                var selectedDriver = (ClientInfo)requestList.SelectedItem;
-                DisplayAlert("Ride Initiated", $"Ride initiated with {selectedDriver.Name}!", "OK");
+                var selectedDClient = (ClientInfo)requestList.SelectedItem;
+                DisplayAlert("Ride Initiated", $"Ride initiated with {selectedDClient.Name}!", "OK");
             }
             else
             {

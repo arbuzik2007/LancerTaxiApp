@@ -10,6 +10,7 @@ namespace TechODayApp.ViewModels
 {
     public class DriverInfo
     {
+        public string PlateNumber { get; set; }
         public string Name { get; set; }
         public string StarRating { get; set; }
     }
@@ -34,7 +35,24 @@ namespace TechODayApp.ViewModels
 
                 string ratingString = new string('★', fullStars) + new string('☆', emptyStars);
 
-                DriverInfos.Add(new DriverInfo() { Name = item.DriverName, StarRating = ratingString });
+                DriverInfos.Add(new DriverInfo() { Name = item.DriverName, StarRating = ratingString, PlateNumber = item.PlateNumber });
+            }
+        }
+
+        public async void UpdateSelectedDriverAsync(DriverInfo selectedDriver, Client currentClient)
+        {
+            try
+            {
+                var selectedInstance = await DriverDataService.Instance.GetItemAsync(selectedDriver.PlateNumber);
+                if (selectedInstance != null)
+                {
+                    selectedInstance.AssociatedClients.Add(currentClient);
+
+                    await DriverDataService.Instance.UpdateItemAsync(selectedInstance);
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception("DriversViewModel: " +ex.Message);
             }
         }
 

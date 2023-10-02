@@ -14,6 +14,7 @@ namespace TechODayApp.Views
     public partial class ClientMain : ContentPage
     {
         DriversViewModel _viewModel;
+        Client currentClient;
         public ClientMain()
         {
             _viewModel = new DriversViewModel();
@@ -33,13 +34,13 @@ namespace TechODayApp.Views
 
         private void UpdateData()
         {
-            var current = ClientDataService.Instance.GetLastItemSimple();
+            currentClient = ClientDataService.Instance.GetLastItemSimple();
 
-            if (current == null)
+            if (currentClient == null)
                 throw new Exception("Error: Client not found");
 
-            currentPosition.Text = current.ClientLocation; 
-            destination.Text = current.ClientDestination; 
+            currentPosition.Text = currentClient.ClientLocation; 
+            destination.Text = currentClient.ClientDestination; 
 
             _viewModel.UpdateDriverInfos();
 
@@ -53,6 +54,8 @@ namespace TechODayApp.Views
             if (driverList.SelectedItem != null)
             {
                 var selectedDriver = (DriverInfo)driverList.SelectedItem;
+                _viewModel.UpdateSelectedDriverAsync(selectedDriver, currentClient);
+
                 DisplayAlert("Ride Initiated", $"Ride initiated with {selectedDriver.Name}!", "OK");
             }
             else

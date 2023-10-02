@@ -15,25 +15,29 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout  Margin="20"
+        <Frame BackgroundColor="#D0E7D2">
+            <Frame BackgroundColor="White" CornerRadius="10" Margin="20">
+                <StackLayout  Margin="20"
                  Spacing="5">
-            <Label Text="{x:Static local:PlaceholderViewModel.DriverName}"
+                    <Label Text="{x:Static local:PlaceholderViewModel.DriverName}" TextColor="#618264"
                 HorizontalOptions="{StaticResource horzOptions}"
                    VerticalOptions="{StaticResource vertOptions}"/>
-            <Entry Placeholder="{x:Static local:PlaceholderViewModel.DriverName}" Completed="Entry_Completed" Text="{Binding DriverName}" PlaceholderColor="{StaticResource entryTextColor}"/>
-            <Label Text="{x:Static local:PlaceholderViewModel.CarBrand}"
+                    <Entry Placeholder="{x:Static local:PlaceholderViewModel.DriverName}" Completed="Entry_Completed" Text="{Binding DriverName}" PlaceholderColor="{StaticResource entryTextColor}"/>
+                    <Label Text="{x:Static local:PlaceholderViewModel.CarBrand}" TextColor="#618264"
                 HorizontalOptions="{StaticResource horzOptions}"
                    VerticalOptions="{StaticResource vertOptions}"/>
-            <Entry Placeholder="{x:Static local:PlaceholderViewModel.CarBrand}" Completed="Entry_Completed" Text="{Binding CarBrand}" PlaceholderColor="{StaticResource entryTextColor}"/>
-            <Label Text="{x:Static local:PlaceholderViewModel.CarModel}"
+                    <Entry Placeholder="{x:Static local:PlaceholderViewModel.CarBrand}" Completed="Entry_Completed" Text="{Binding CarBrand}" PlaceholderColor="{StaticResource entryTextColor}"/>
+                    <Label Text="{x:Static local:PlaceholderViewModel.CarModel}" TextColor="#618264"
                 HorizontalOptions="{StaticResource horzOptions}"
                    VerticalOptions="{StaticResource vertOptions}"/>
-            <Entry Placeholder="{x:Static local:PlaceholderViewModel.CarModel}" Completed="Entry_Completed" Text="{Binding CarModel}" PlaceholderColor="{StaticResource entryTextColor}"/>
-            <Label Text="{x:Static local:PlaceholderViewModel.PlateNumber}"
+                    <Entry Placeholder="{x:Static local:PlaceholderViewModel.CarModel}" Completed="Entry_Completed" Text="{Binding CarModel}" PlaceholderColor="{StaticResource entryTextColor}"/>
+                    <Label Text="{x:Static local:PlaceholderViewModel.PlateNumber}" TextColor="#618264"
                 HorizontalOptions="{StaticResource horzOptions}"
                    VerticalOptions="{StaticResource vertOptions}"/>
-            <Entry Placeholder="{x:Static local:PlaceholderViewModel.PlateNumber}" Completed="Entry_Completed"  Text="{Binding PlateNumber}" PlaceholderColor="{StaticResource entryTextColor}"/>
-            <Button x:Name="sendButton" Command="{Binding SaveCommand}" BackgroundColor="Salmon"></Button>
-        </StackLayout>
+                    <Entry Placeholder="{x:Static local:PlaceholderViewModel.PlateNumber}" Completed="Entry_Completed"  Text="{Binding PlateNumber}" PlaceholderColor="{StaticResource entryTextColor}"/>
+                    <Button x:Name="sendButton" Command="{Binding SaveCommand}" BackgroundColor="Salmon"></Button>
+                </StackLayout>
+            </Frame>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

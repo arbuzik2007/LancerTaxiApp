@@ -37,7 +37,7 @@
                 <RefreshView x:Name="usersDisplay" IsVisible="true" x:DataType="local:DriversViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" >
                     <StackLayout x:Name="drivers" Padding="20">
                         <Label Text="Recommended Drivers" FontSize="18"/>
-                        <ListView ItemsSource="{Binding DriverInfos}" x:Name="driverList" RowHeight="100">
+                        <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding DriverInfos}" x:Name="driverList" RowHeight="100">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

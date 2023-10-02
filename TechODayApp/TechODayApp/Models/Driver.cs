@@ -1,4 +1,6 @@
-﻿namespace TechODayApp.Models
+﻿using System.Collections.Generic;
+
+namespace TechODayApp.Models
 {
     public class Driver
     {
@@ -9,5 +11,6 @@
         public string PlateNumber { get; set; }
         public int Rating { get; set; }
 
+        public List<Client> AssociatedClients { get; set; } = new List<Client>(); // Collection of associated clients
     }
 }

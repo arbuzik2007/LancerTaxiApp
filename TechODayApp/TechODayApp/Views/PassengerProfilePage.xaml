@@ -3,24 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TechODayApp.Views.PassengerProfilePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding ClientName}" HorizontalOptions="CenterAndExpand"/>
+        <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True">
+            <StackLayout Padding="20">
+                <Frame BackgroundColor="#79AC78"  CornerRadius="50"  HeightRequest="120" WidthRequest="120" HorizontalOptions="Center">
+                    <Image Source="icon_passenger.jpg" Aspect="AspectFill"/>
+                </Frame>
 
-            <ListView ItemsSource="{Binding Tags}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" Padding="10">
-                                <Label Text="{Binding Name}" TextColor="{Binding Color}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackLayout Orientation="Horizontal">
-                <Entry x:Name="tagEntry" Placeholder="Add a Tag" />
-                <Button Text="Add Tag" Clicked="Button_Clicked" />
+                <Label Text="{Binding ClientName}" FontSize="18" Margin="0,10,0,0" TextColor="#618264" HorizontalOptions="CenterAndExpand"/>
+                
+                <!-- Placeholder values start: -->
+
+                <StackLayout Margin="0,20,0,0">
+                    <Label Text="Email:" TextColor="#618264"/>
+                    <Label Text="abc@example.com" TextColor="#618264"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,10,0,0">
+                    <Label Text="Phone:" TextColor="#618264"/>
+                    <Label Text="123-456-7890" TextColor="#618264"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,20,0,0">
+                    <Label Text="Card Number:" TextColor="#618264"/>
+                    <Label Text="**** **** **** 1234" TextColor="#618264"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,10,0,0">
+                    <Label Text="Expiration Date:" TextColor="#618264"/>
+                    <Label Text="12/24" TextColor="#618264"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,10,0,0">
+                    <Label Text="CVV:" TextColor="#618264"/>
+                    <Label Text="***" TextColor="#618264"/>
+                </StackLayout>
+
+                <!-- Placeholder values end -->
+
+                <ListView ItemsSource="{Binding Tags}" RowHeight="50">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Frame BackgroundColor="#AACCAE" CornerRadius="5" Padding="5,2" Margin="0,5,0,0">
+                                        <Label Text="{Binding Name}" FontSize="18" TextColor="{Binding Color}" />
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="tagEntry" Placeholder="Add a Tag" />
+                    <Button Text="Add Tag" Clicked="Button_Clicked" />
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

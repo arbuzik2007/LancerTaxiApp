@@ -26,12 +26,18 @@ namespace TechODayApp.ViewModels
 
         public ObservableCollection<ClientInfo> ClientInfos { get; private set; }
 
-        public void UpdateClientInfos()
+        public void UpdateClientInfos(Driver currentDriver)
         {
-            ClientInfos = new ObservableCollection<ClientInfo>();
-            foreach (var item in Items)
+            try
             {
-                ClientInfos.Add(new ClientInfo { Name = $"{item.ClientName} - Pickup at {item.ClientLocation} - To {item.ClientDestination}", Tags = item.Tags });
+                ClientInfos = new ObservableCollection<ClientInfo>();
+                foreach (var item in currentDriver.AssociatedClients)
+                {
+                    ClientInfos.Add(new ClientInfo { Name = $"{item.ClientName} - Pickup at {item.ClientLocation} - To {item.ClientDestination}", Tags = item.Tags });
+                }
+            }catch(Exception ex)
+            {
+                throw new Exception("ClientsViewModel:" + ex.Message);
             }
         }
 

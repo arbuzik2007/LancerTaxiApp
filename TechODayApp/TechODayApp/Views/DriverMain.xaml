@@ -37,7 +37,7 @@
                     <Label StyleClass="dark-title" Text="Current Requests" HorizontalOptions="Center"/>
                     <ScrollView VerticalScrollBarVisibility="Always">
                         <RefreshView x:Name="requests" IsVisible="true" x:DataType="local:ClientsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" >
-                            <ListView  x:Name="requestList" StyleId="current-request" ItemsSource="{Binding ClientInfos}" x:DataType="local:ClientsViewModel" IsVisible="true" RowHeight="100">
+                            <ListView CachingStrategy="RecycleElement" x:Name="requestList" StyleId="current-request" ItemsSource="{Binding ClientInfos}" x:DataType="local:ClientsViewModel" IsVisible="true" RowHeight="100">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>

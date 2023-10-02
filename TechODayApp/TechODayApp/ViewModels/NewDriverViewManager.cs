@@ -76,7 +76,8 @@ namespace TechODayApp.ViewModels
                 CarBrand = carBrand,
                 CarModel = carModel,
                 PlateNumber = plateNumber,
-                Rating = rating
+                Rating = rating,
+                AssociatedClients = new System.Collections.Generic.List<Client>()
             };
 
             await DriverStore.AddItemAsync(newItem);
