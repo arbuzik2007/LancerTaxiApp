@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Syncfusion.SfMaps.XForms;
+using System;
+using System.Collections.ObjectModel;
 using TechODayApp.Services;
 using TechODayApp.ViewModels;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,6 +22,9 @@ namespace TechODayApp.Views
         {
             _viewModel = new MapViewModel();
             this.BindingContext = _viewModel;
+
+
+            _viewModel.AddMarkerInCurrentLocation(layer);
 
         }
         protected override void OnAppearing()

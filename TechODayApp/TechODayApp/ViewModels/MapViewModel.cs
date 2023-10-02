@@ -3,6 +3,10 @@ using Xamarin.Forms;
 using TechODayApp.Views;
 using Android.Media;
 using System;
+using System.Collections.ObjectModel;
+using Xamarin.Essentials;
+using TechODayApp.MapMarkers;
+using Syncfusion.SfMaps.XForms;
 
 namespace TechODayApp.ViewModels
 {
@@ -53,6 +57,33 @@ namespace TechODayApp.ViewModels
             current.ClientDestination = directionCallBack;
 
             await ClientDataService.Instance.UpdateItemAsync(current);
+        }
+
+        public async void AddMarkerInCurrentLocation(ImageryLayer layer)
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+                if (location != null)
+                {
+                    CustomMarker marker = new CustomMarker();
+                    marker.Latitude = location.Latitude.ToString();
+                    marker.Longitude = location.Longitude.ToString();
+
+                    LocationCallBack = $"lat: {location.Latitude} lon: {location.Longitude}";
+
+                    layer.GeoCoordinates = new Point(location.Latitude, location.Longitude);
+                    layer.Radius = 5;
+                    layer.DistanceType = DistanceType.KiloMeter;
+
+                    layer.Markers = new ObservableCollection<MapMarker> { marker };
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle not supported on device exception
+                await Application.Current.MainPage.DisplayAlert("Not Supported", ex.Message, "Ok");
+            }
         }
     }
 }
