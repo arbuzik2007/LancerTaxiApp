@@ -33,6 +33,7 @@ namespace TechODayApp.Views
             ClientDataService.Instance.passengerProfile = _viewModel;
             if (!String.IsNullOrEmpty(tagEntry.Text))
                 _viewModel.AddTag(tagEntry.Text);
+            _viewModel.SaveCommand.Execute(null);
         }
     }
 }

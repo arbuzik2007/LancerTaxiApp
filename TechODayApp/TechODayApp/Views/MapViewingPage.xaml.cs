@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechODayApp.Services;
 using TechODayApp.ViewModels;
 using Xamarin.Forms;
@@ -13,56 +9,35 @@ namespace TechODayApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapViewingPage : ContentPage
     {
-        DriversViewModel _viewModel;
-        public string From;
+        MapViewModel _viewModel;
         public MapViewingPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new DriversViewModel();
             Load();
         }
-        async private void Load()
+        private void Load()
         {
-            await Navigation.PushAsync(new ClientMain());
+            _viewModel = new MapViewModel();
+            this.BindingContext = _viewModel;
 
         }
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            topLayout.IsVisible = true;
-            usersDisplay.IsVisible = true;
-            //if (UserProfileState.Instance.IsDriverProfileVisible)
-            //{
-            //    topLayout.IsVisible = false;
-            //    usersDisplay.IsVisible = false;
-            //    var request = DataService.Instance.DriveRequest;
-            //    // Change UI elements for a driver
-            //    var a = DataService.Instance.GetLastItemSimple();
-            //    if (request.SelectedDriver == a)
-            //    {
-            //        var popup = new Popup
-            //        {
-            //            Content = new StackLayout
-            //            {
-            //                Children = {
-            //                new Label { Text = request.SelectedDriver.DriverName},
-            //                new Button{Text = "Accept", Command = new Command(() => Dismiss("Dismiss was clicked")) },
-            //                new Button{Text = "Reject", Command = new Command(() => Dismiss("Dismiss was clicked")) }
-            //            }
-            //            }
-            //        };
-            //    }
-            //}
-            //else
-            //{
-            //    usersDisplay.IsVisible = true;
-            //}
-            _viewModel.OnAppearing();
+            Load();
         }
 
-        //private void Dismiss(string v)
-        //{
-        //    throw new NotImplementedException("Here the main coder went to sleep");
-        //}
+        private void rideButton_Clicked(object sender, EventArgs e)
+        {
+            if (UserProfileState.Instance.IsDriverProfileVisible)
+            {
+                DisplayAlert("Wrong Action", $"Signed in as driver", "OK");
+            }
+            else
+            {
+                _viewModel.SaveCommand.Execute(null);
+                Navigation.PushAsync(new ClientMain());
+            }
+        }
     }
 }

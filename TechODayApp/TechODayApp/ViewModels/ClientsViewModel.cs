@@ -10,6 +10,12 @@ using Xamarin.Forms;
 
 namespace TechODayApp.ViewModels
 {
+    public class ClientInfo
+    {
+        public string Name { get; set; }
+        public ObservableCollection<Tag> Tags { get; set; }
+    }
+
     public class ClientsViewModel : BaseViewModel
     {
         private Client _selectedItem;
@@ -17,6 +23,17 @@ namespace TechODayApp.ViewModels
         public ObservableCollection<Client> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command<Client> ItemTapped { get; }
+
+        public ObservableCollection<ClientInfo> ClientInfos { get; private set; }
+
+        public void UpdateClientInfos()
+        {
+            ClientInfos = new ObservableCollection<ClientInfo>();
+            foreach (var item in Items)
+            {
+                ClientInfos.Add(new ClientInfo { Name = $"{item.ClientName} - Pickup at {item.ClientLocation} - To {item.ClientDestination}", Tags = item.Tags });
+            }
+        }
 
         public ClientsViewModel()
         {
@@ -62,27 +79,6 @@ namespace TechODayApp.ViewModels
             {
                 SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
-            }
-        }
-
-        private string locationCallBack;
-        public string LocationCallBack
-        {
-            get => locationCallBack;
-            set
-            {
-                SetProperty(ref locationCallBack, value);
-                DriveRequest.Location = locationCallBack;
-            }
-        }
-        private string directionCallBack;
-        public string DirectionCallBack
-        {
-            get => directionCallBack;
-            set
-            {
-                SetProperty(ref directionCallBack, value);
-                DriveRequest.Location = directionCallBack;
             }
         }
 

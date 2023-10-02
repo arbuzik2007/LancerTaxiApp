@@ -76,6 +76,5 @@ namespace TechODayApp.Services
                 return instance;
             }
         }
-        public DriveRequest DriveRequest { get; set; }
     }
 }

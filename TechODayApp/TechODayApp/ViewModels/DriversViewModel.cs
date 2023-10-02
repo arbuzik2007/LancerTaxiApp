@@ -85,33 +85,12 @@ namespace TechODayApp.ViewModels
             }
         }
 
-        private string locationCallBack;
-        public string LocationCallBack
-        {
-            get => locationCallBack;
-            set
-            {
-                SetProperty(ref locationCallBack, value);
-                DriveRequest.Location = locationCallBack;
-            }
-        }
-        private string directionCallBack;
-        public string DirectionCallBack
-        {
-            get => directionCallBack;
-            set
-            {
-                SetProperty(ref directionCallBack, value);
-                DriveRequest.Location = directionCallBack;
-            }
-        }
-
         void OnItemSelected(Driver item)
         {
             if (item == null)
                 return;
 
-            DriverDataService.Instance.DriveRequest = new DriveRequest() { SelectedDriver = item };
+            //DriverDataService.Instance.DriveRequest = new DriveRequest() { SelectedDriver = item };
 
             // This will push the ItemDetailPage onto the navigation stack
             //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");

@@ -30,48 +30,12 @@
             </Grid.RowDefinitions>
             <BoxView Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="2" Grid.Column="0" BackgroundColor="AliceBlue"></BoxView>
             <StackLayout x:Name="topLayout" Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Padding="0.2">
-                <Entry Placeholder="Where's the start of your trip?" x:DataType="local:DriversViewModel" Text="{Binding DirectionCallBack }" HorizontalOptions="{StaticResource horzOptions}"></Entry>
-                <Entry Placeholder="Where do you want to drop?" x:DataType="local:DriversViewModel" Text="{Binding LocationCallBack }" HorizontalOptions="{StaticResource horzOptions}"></Entry>
+                <Entry x:Name="location" Placeholder="Where's the start of your trip?" x:DataType="local:MapViewModel" Text="{Binding LocationCallBack }" HorizontalOptions="{StaticResource horzOptions}"></Entry>
+                <Entry x:Name="destination" Placeholder="Where do you want to drop?" x:DataType="local:MapViewModel" Text="{Binding DirectionCallBack }" HorizontalOptions="{StaticResource horzOptions}"></Entry>
             </StackLayout>
 
             <StackLayout x:Name="bottomLayout" Orientation="Vertical" Grid.Row="3" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="0.2">
-                <Button x:Name="rideButton" Text="RIDE NOW"></Button>
-                <RefreshView x:Name="usersDisplay" IsVisible="false" x:DataType="local:DriversViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" >
-
-                    <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Padding="10" x:DataType="model:Driver">
-
-
-                                    <Label Text="{Binding DriverName}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-
-                                    <Label Text="{Binding CarBrand}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-
-
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:DriversViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-
-                                        </TapGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
-
-
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </RefreshView>
+                <Button x:Name="rideButton" Text="RIDE NOW" Clicked="rideButton_Clicked"></Button>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

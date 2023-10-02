@@ -35,22 +35,40 @@
                 <StackLayout x:Name="currentRequests" Orientation="Vertical" Padding="0.2" HorizontalOptions="CenterAndExpand">
 
                     <Label StyleClass="dark-title" Text="Current Requests" HorizontalOptions="Center"/>
-                    <ScrollView>
-                    <RefreshView StyleId="current-request" x:DataType="local:ClientsViewModel" IsVisible="true" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-
-                        <StackLayout StyleId="request-list" x:Name="requestList">
-                            
-                        </StackLayout>
-                    </RefreshView>
+                    <ScrollView VerticalScrollBarVisibility="Always">
+                        <RefreshView x:Name="requests" IsVisible="true" x:DataType="local:ClientsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}" >
+                            <ListView  x:Name="requestList" StyleId="current-request" ItemsSource="{Binding ClientInfos}" x:DataType="local:ClientsViewModel" IsVisible="true" RowHeight="100">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout x:DataType="local:ClientInfo" BackgroundColor="#D0E7D2" Padding="10">
+                                                <Label Text="{Binding Name}" />
+                                                <ListView ItemsSource="{Binding Tags}" HasUnevenRows="True" >
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <ViewCell>
+                                                                <StackLayout x:DataType="model:Tag" Orientation="Horizontal">
+                                                                    <Label Text="{Binding Name}" TextColor="{Binding Color}" />
+                                                                </StackLayout>
+                                                            </ViewCell>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </RefreshView>
                     </ScrollView>
                     <Button StyleId="pick-request-btn" x:Name="pickRequestButton" Text="Take a Ride" Clicked="Button_Clicked"/>
             </StackLayout>
             </Frame>
-            <Frame RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+            <Frame RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}" BackgroundColor="#4D7942"
                  RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Constant=-80}"
                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                    StyleId="driver-status-message" x:Name="driverStatus">
-                <Label StyleId="status-message-text" x:Name="driverStatusMessage"/>
+                <Label StyleId="status-message-text" x:Name="driverStatusMessage" TextColor="GhostWhite"/>
             </Frame>
         </RelativeLayout>
     </ContentPage.Content>
